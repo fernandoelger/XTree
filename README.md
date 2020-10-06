@@ -4,7 +4,7 @@ Este artigo descreve alternativas de solução para o primeiro problema proposto
 
 ## Introdução ao Problema
 
-Acreditamos que conseguimos criar uma maneira mais compacta para representar árvores genéricas, uma vez que está nos incomodando arquivos XML cada vez maiores e com desperdício de bytes. Nossa solução é a XTree, uma árvore que garante o uso de arquivos menores e uma vantagem extra do sigilo.
+Acreditamos que conseguimos criar uma maneira mais compacta para representar árvores genéricas, uma vez que está nos incomodando arquivos *XML* cada vez maiores e com desperdício de bytes. Nossa solução é a XTree, uma árvore que garante o uso de arquivos menores e uma vantagem extra do sigilo.
 
 A XTree é baseada em três regras simples:
 
@@ -22,7 +22,7 @@ Ela indica um nodo om 2 filhos e uma valor (32). Um desses dois filhos tem 0 fil
 
 <p align="center">
     <img src="assets/XTree representation example.png">
-<p align="center">This is a centered caption for the image<p align="center">
+<p align="center">Representação da XTree do exemplo<p align="center">
 
 O problema a ser resolvido é elaborar um programa capaz de ler a descrição de uma XTree, na qual se encontra em um arquivo de texto, e descobrir estas informações para averiguar a integridade da árvore.
 
@@ -41,7 +41,7 @@ Para resolver o problema proposto, analisaremos uma primeira solução com impre
 
 Depois de considerar o problema, podemos supor que a descrição de uma XTree se comporta de maneira ambígua. Começamos a suspeitar da ideia de que uma suposta lista com os dados poderia ser consumida do início e do fim ao mesmo tempo. Essa ideia se sustenta se considerarmos que quando um nodo não é uma folha, seu elemento se encontra no final da lista.
 
-Após isso, fica claro que devemos começar a pensar em uma maneira de ler e lidar com as descrições das XTrees, que se encontram em arquivos de texto onde cada elemento das descrições estão separados por espaços simples. Concluímos que devemos usar o Scanner para ler o arquivo e, em seguida ir adicionando cada elemento dentro de uma lista encadeada de inteiros para não ter que lidar com uma conversão posteriormente, já que teríamos que fazer a soma de alguns desses elementos. A lista encadeada foi escolhida pois, o algoritmo que iria analisar a XTree faria sempre a remoção do primeiro e do último elemento da lista conforme ela iria sendo consumida, uma vez que os métodos de remoção da lista encadeada possuem um tempo de execução constante.
+Após isso, fica claro que devemos começar a pensar em uma maneira de ler e lidar com as descrições das XTrees, que se encontram em arquivos de texto onde cada elemento das descrições estão separados por espaços simples. Concluímos que devemos usar o *Scanner* para ler o arquivo e, em seguida ir adicionando cada elemento dentro de uma lista encadeada de inteiros para não ter que lidar com uma conversão posteriormente, já que teríamos que fazer a soma de alguns desses elementos. A lista encadeada foi escolhida pois, o algoritmo que iria analisar a XTree faria sempre a remoção do primeiro e do último elemento da lista conforme ela iria sendo consumida, uma vez que os métodos de remoção da lista encadeada possuem um tempo de execução constante.
 
 Não precisou ser testado nenhum caso para percebermos que a ideia de consumir uma lista do início e do fim ao mesmo tempo não iria se manter, pois poderia haver alterações na integridade dos dados dos nodos se a descrição da XTree fosse maior. Analisando firmemente as regras da XTree, podemos concluir que devemos consumir a lista de elementos do início e de forma contínua, pois quando um nodo não é uma folha, seu devido elemento será consumido naturalmente, assim que todas as informações de seus filhos tiverem sido consumidas.
 
@@ -60,6 +60,7 @@ PROGRAM analyseXTree()
 
   numberOfChildren = list[0]
   numberOfElements = list[1]
+
   FOR i = 0; i < numberOfChildren
     nodesCount++
     analyseXTree()
@@ -68,6 +69,7 @@ PROGRAM analyseXTree()
   FOR i = 0; i < numberOfElements
     sum = sum + list[0]
   ENDFOR
+
 END
 ```
 
@@ -96,4 +98,4 @@ caso-8|8795004|976719|338643877|55,4
 
 A solução inicial, mesmo não oferecendo um resultado, contribuiu bastante para o entendimento do problema e abriu caminho para a solução definitiva. A partir disso, concluímos que geralmente levantar hipóteses para a solução de um problema e tentar achar equívocos nelas pode ser muito mais vantajoso do que simplesmente começar a implementando.
 
-A solução definitiva se mostrou bastante simples e clara, embora eu gostaria testar e discutir outras estruturas de dados para consumir os arquivos de texto, como por exemplo vetores, tendo em vista que teria que se incrementar o seu índice para realizar o caminhamento. Além disso, a solução recursiva adotada foi razoavelmente eficiente, possuindo uma notação O(n), pois devemos passar por todos os elementos da lista e o tempo de execução cresce proporcional a n.
+A solução definitiva se mostrou bastante simples e clara, embora eu gostaria testar e discutir outras estruturas de dados para consumir os arquivos de texto, como por exemplo vetores, tendo em vista que teria que se incrementar o seu índice para realizar o caminhamento. Além disso, a solução recursiva adotada foi razoavelmente eficiente, possuindo uma notação **O(n)**, pois devemos passar por todos os elementos da lista e o tempo de execução cresce proporcional a *n*.
