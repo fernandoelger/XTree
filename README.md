@@ -1,6 +1,10 @@
-## Introdução do Problema
+## Resumo
 
-Dentro do escopo da disciplina de Algoritmos e Estruturas de Dados II, o primeiro problema pode ser resumido assim: acreditamos que conseguimos criar uma maneira mais compacta para representar árvores genéricas, uma vez que está nos incomodando arquivos XML cada vez maiores e com desperdício de bytes. Nossa solução é a XTree, uma árvore que garante o uso de arquivos menores e uma vantagem extra do sigilo.
+Este artigo descreve alternativas de solução para o primeiro problema proposto na disciplina de Algoritmos e Estruturas de Dados II no semestre 3, que trata da análise de uma XTree, que por definição é uma maneira mais compacta de representar árvores genéricas. É apresentado a lógica por trás da XTree e o funcionamento do algoritmo que averigua a integridade da árvore, além de avaliar sua eficiência. Em seguida é exposto os resultados para oito casos analisados.
+
+## Introdução ao Problema
+
+Acreditamos que conseguimos criar uma maneira mais compacta para representar árvores genéricas, uma vez que está nos incomodando arquivos XML cada vez maiores e com desperdício de bytes. Nossa solução é a XTree, uma árvore que garante o uso de arquivos menores e uma vantagem extra do sigilo.
 
 A XTree é baseada em três regras simples:
 
@@ -16,18 +20,20 @@ Por exemplo, a descrição de uma XTree é dada por
 
 Ela indica um nodo om 2 filhos e uma valor (32). Um desses dois filhos tem 0 filhos e dois valores (50 e 10) enquanto o outro filho tem um filho e um valor (79). O nodo que está mais fundo na árvore tem 0 filhos e três valores (39, 51 e 87).
 
-<img src="assets/XTree representation example.png">
+<p align="center">
+    <img src="assets/XTree representation example.png">
+<p align="center">This is a centered caption for the image<p align="center">
 
-O problema a ser resolvido é elaborar um programa capaz de ler a descrição de uma XTree, que está em um arquivo de texto, e descobrir estas informações que, segundo o enunciado, é considerado um bom teste:
+O problema a ser resolvido é elaborar um programa capaz de ler a descrição de uma XTree, na qual se encontra em um arquivo de texto, e descobrir estas informações para averiguar a integridade da árvore.
 
-1. A quantidade de nodos da XTree;
-2. A altura da XTree;
-3. A soma de todos os valores contidos nos nodos.
+1. A quantidade de nodos da XTree
+2. A altura da XTree
+3. A soma de todos os valores contidos nos nodos
 
 No caso do exemplo acima, as informações encontradas devem ser sucessivamente:
-1. 4 nodos;
-2. Altura 2;
-3. 348.
+1. 4 nodos
+2. Altura 2
+3. 348
 
 Para resolver o problema proposto, analisaremos uma primeira solução com imprecisões e em seguida uma possível solução funcional, bem como suas características e dificuldades encontradas. Em seguida os resultados obtidos dos casos serão apresentados, bem como as conclusões obtidas no decorrer do trabalho.
 
@@ -51,12 +57,14 @@ Este algoritmo pode funcionar recursivamente, da seguinte forma:
 
 ```
 PROGRAM analyseXTree()
+
   numberOfChildren = list[0]
   numberOfElements = list[1]
   FOR i = 0; i < numberOfChildren
     nodesCount++
     analyseXTree()
   ENDFOR
+
   FOR i = 0; i < numberOfElements
     sum = sum + list[0]
   ENDFOR
