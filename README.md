@@ -77,6 +77,7 @@ PROGRAMA analyseX-Tree()
     SE altura > maiorAltura
 
       maiorAltura = altura
+
   FIM
 
   altura --
